@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Web Share API</title>
+    <style>
+      body {
+        margin: 0;
+        background: rgb(162, 248, 160);
+        font-family: system-ui;
+        color: rebeccapurple;
+        padding: 20px;
+      }
+      img {
+        width: 100%;
+      }
+      main {
+        max-width: 320px;
+        margin: 20px auto;
+        /* border: 5px dashed lightseagreen; */
+        height: calc(100vh - 80px);
+        border-radius: 10px;
+        background: white;
+        padding: 20px;
+        box-shadow: 0 0 5px lightslategray;
+      }
+      button {
+        background: lightcoral;
+        padding: 10px 20px 12px;
+        color: white;
+        border-radius: 30px;
+        width: 100%;
+        border: none;
+        font-size: 20px;
+        text-transform: uppercase;
+        -webkit-appearance: none;
+        font-weight: bold;
+        outline: 0;
+        cursor: pointer;
+        box-shadow: inset 0px -2px 0 2px black;
+      }
+      button:active {
+        transform: scale(0.9);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <img src="./doge.png" alt="" />
+      </section>
+      <h4><em>Hey, if you are handsome, share me...</em></h4>
+      <button id="button">Share</button>
+    </main>
+    <script>
+      const $button = document.querySelector('#button');
+      if ('share' in navigator) {
+        $button.addEventListener('click', share);
+        function share() {
+          navigator
+            .share({
+              title: 'web Share API',
+              text: 'Thankyou men',
+              url: './doge.png',
+            })
+            .then(() => {
+              alert('You have good work');
+            })
+            .catch(() => {
+              alert('please try one more time');
+            });
+        }
+      } else {
+        alert('Your phone can not use this system');
+      }
+    </script>
+  </body>
+</html>
